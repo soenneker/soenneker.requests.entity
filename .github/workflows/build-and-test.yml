@@ -38,7 +38,7 @@ jobs:
         run: dotnet build test/Soenneker.Requests.Entity.Tests/Soenneker.Requests.Entity.Tests.csproj --configuration Release --no-restore --verbosity minimal
 
       - name: Test
-        run: dotnet test test/Soenneker.Requests.Entity.Tests/Soenneker.Requests.Entity.Tests.csproj --configuration Release --no-build --no-restore --verbosity minimal
+        run: dotnet test --project test/Soenneker.Requests.Entity.Tests/Soenneker.Requests.Entity.Tests.csproj --configuration Release --no-build --no-restore --verbosity minimal
 
       - name: Pack
         run: dotnet pack src/Soenneker.Requests.Entity/Soenneker.Requests.Entity.csproj --configuration Release --no-build --no-restore --output . --verbosity minimal
