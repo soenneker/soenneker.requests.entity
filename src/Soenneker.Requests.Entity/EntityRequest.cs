@@ -10,6 +10,9 @@ namespace Soenneker.Requests.Entity;
 [PublicOpenApiObject]
 public record EntityRequest
 {
+    /// <summary>
+    /// The unique identifier for the entity, when updating an existing entity.
+    /// </summary>
     [JsonPropertyName("id")]
     [NullableGuidValidation]
     public string? Id { get; set; }
