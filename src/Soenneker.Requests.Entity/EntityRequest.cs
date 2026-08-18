@@ -5,13 +5,13 @@ using Soenneker.Attributes.Validation.Guid.Nullable;
 namespace Soenneker.Requests.Entity;
 
 /// <summary>
-/// A record request type for Entity objects
+/// Provides the optional resource identifier shared by create-or-update API request models.
 /// </summary>
 [PublicOpenApiObject]
 public record EntityRequest
 {
     /// <summary>
-    /// The unique identifier for the entity, when updating an existing entity.
+    /// Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation.
     /// </summary>
     [JsonPropertyName("id")]
     [NullableGuidValidation]
