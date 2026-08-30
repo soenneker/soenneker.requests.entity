@@ -5,20 +5,46 @@
 
 # Soenneker.Requests.Entity
 
-Provides the optional resource identifier shared by create-or-update API request models.
+A reusable request record for APIs where the same payload represents either a new or existing entity.
 
-## Install
+## Installation
 
 ```bash
 dotnet add package Soenneker.Requests.Entity
 ```
 
-## What you get
+## Usage
 
-- `EntityRequest` — Provides the optional resource identifier shared by create-or-update API request models.
+Derive an application request from `EntityRequest` to add an optional JSON `id` property:
 
-## API at a glance
+```csharp
+using System.ComponentModel.DataAnnotations;
+using Soenneker.Requests.Entity;
 
-| API | What it does | Result / important behavior |
-| --- | --- | --- |
-| `EntityRequest.Id` | Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation. | Stable unique identifier of an existing resource to update; omit it when the API assigns an identifier during creation. |
+public record SaveWidgetRequest : EntityRequest
+{
+    [Required]
+    public string Name { get; init; } = null!;
+}
+```
+
+Omit `Id` when creating an entity:
+
+```csharp
+var create = new SaveWidgetRequest
+{
+    Name = "Primary widget"
+};
+```
+
+Supply the existing identifier when updating one:
+
+```csharp
+var update = new SaveWidgetRequest
+{
+    Id = "75f11404-9c6f-4b33-b16c-d3ffea59f8f4",
+    Name = "Renamed widget"
+};
+```
+
+`Id` is a nullable string so it maps cleanly to request JSON. It carries `NullableGuidValidation`, which accepts an omitted value but requires a valid GUID when a value is present. Run your normal ASP.NET Core or data-annotation validation pipeline before using the request; JSON deserialization by itself does not execute validation attributes.
