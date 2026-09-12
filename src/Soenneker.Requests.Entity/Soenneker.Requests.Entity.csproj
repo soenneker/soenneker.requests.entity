@@ -45,6 +45,6 @@
 
     <ItemGroup>
         <PackageReference Include="Soenneker.Attributes.PublicOpenApiObject" Version="4.0.53" />
-        <PackageReference Include="Soenneker.Attributes.Validation.Guid.Nullable" Version="4.0.230" />
+        <PackageReference Include="Soenneker.Attributes.Validation.Guid.Nullable" Version="4.0.232" />
     </ItemGroup>
 </Project>
